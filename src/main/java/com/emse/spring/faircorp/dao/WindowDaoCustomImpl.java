@@ -23,4 +23,15 @@ public class WindowDaoCustomImpl implements WindowDaoCustom {
                 .getResultList();
     }
 
+    @Transactional
+    @Modifying
+    public List<Window> deleteAllWindowsInRoom(Long id){
+        String jpql = "delete from Window w where w.room.id = :id";
+        em.createQuery(jpql).setParameter("id", id).executeUpdate();
+        String jpql1 = " select w from Window w where w.room.id = :id";
+        return em.createQuery(jpql1, Window.class)
+                .setParameter("id", id)
+                .getResultList();
+
+}
 }

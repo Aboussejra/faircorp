@@ -44,7 +44,7 @@ public class Room {
 
     public Integer getFloor() { return this.floor;}
 
-    public void setFloor() { this.floor = floor;}
+    public void setFloor(Integer floor) { this.floor = floor;}
 
     public String getName() {
         return name;
@@ -57,13 +57,13 @@ public class Room {
     public void setCurrentTemperature(Double currentTemperature) {
         this.currentTemperature = currentTemperature;
     }
-    public Double getCurrentTemperature(Double currentTemperature) {
+    public Double getCurrentTemperature() {
         return currentTemperature;
     }
     public void setTargetTemperature(Double targetTemperature) {
         this.targetTemperature = targetTemperature;
     }
-    public Double getTargetTemperature(Double targetTemperature) {
+    public Double getTargetTemperature() {
         return targetTemperature;
     }
 
