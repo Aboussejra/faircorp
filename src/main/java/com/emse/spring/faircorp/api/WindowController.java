@@ -41,6 +41,7 @@ public class WindowController {
         return new WindowDto(window);
     }
 
+
     @PostMapping // (8)
     public WindowDto create(@RequestBody WindowDto dto) {
         // WindowDto must always contain the window room
