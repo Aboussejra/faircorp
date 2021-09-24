@@ -27,12 +27,15 @@ public class Room {
     @Column(nullable = true)
     private Double targetTemperature;
 
+    @ManyToOne(optional = false)
+    private Building building;
+
     public Room() {
     }
-    public  Room(Long id, Integer floor, String name, Double currentTemperature, Double targetTemperature, Set<Heater> heaters, Set<Window> windows){
+    public  Room(String name, Integer floor, Building building){
         this.id = id;
         this.floor = floor;
-        this.name = name;
+        this.building = building;
     }
     public Long getId() {
         return this.id;
@@ -79,5 +82,7 @@ public class Room {
     public void setWindows(Set<Window> windows) {
         this.windows = windows;
     }
+    public Building getBuilding() {return this.building;}
+    public void setBuilding(Building building) {this.building = building;}
 
 }

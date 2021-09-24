@@ -40,7 +40,7 @@ public class RoomController {
     public RoomDto create(@RequestBody RoomDto dto) {
         Room room = null;
         if (dto.getId() == null) {
-            room = roomDao.save(new Room(dto.getName(), dto.getFloor()));
+            room = roomDao.save(new Room(dto.getName(), dto.getFloor(), dto.getBuilding()));
         }
         else {
             room = roomDao.getById(dto.getId());

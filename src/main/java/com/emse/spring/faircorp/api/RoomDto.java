@@ -1,5 +1,6 @@
 package com.emse.spring.faircorp.api;
 
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
@@ -15,6 +16,7 @@ public class RoomDto {
     private Double targetTemperature;
     private Set<HeaterDto> heaters;
     private Set<WindowDto> windows;
+    private Building building;
 
     public RoomDto() {
     }
@@ -27,6 +29,7 @@ public class RoomDto {
         this.targetTemperature = room.getTargetTemperature();
         this.heaters = room.getHeaters().stream().map(HeaterDto::new).collect(Collectors.toSet());
         this.windows = room.getWindows().stream().map(WindowDto::new).collect(Collectors.toSet());
+        this.building = room.getBuilding();
     }
 
     public Long getId() {
@@ -84,4 +87,7 @@ public class RoomDto {
     public Set<WindowDto> getWindows() {
         return windows;
     }
+    public Building getBuilding() {return this.building;}
+    public void setBuilding(Building building) {this.building = building;}
+
 }
