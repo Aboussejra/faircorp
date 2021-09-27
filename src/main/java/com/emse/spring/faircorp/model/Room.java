@@ -15,7 +15,6 @@ public class Room {
     @Column(nullable=false)
     private String name;
 
-    @Column(nullable = true)
     private Double currentTemperature;
 
     @OneToMany(mappedBy = "room")
@@ -24,7 +23,6 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private Set<Window> windows;
 
-    @Column(nullable = true)
     private Double targetTemperature;
 
     @ManyToOne(optional = false)

@@ -1,5 +1,6 @@
 package com.emse.spring.faircorp.api;
 
+import com.emse.spring.faircorp.dao.BuildingDao;
 import com.emse.spring.faircorp.dao.HeaterDao;
 import com.emse.spring.faircorp.model.*;
 import com.emse.spring.faircorp.dao.RoomDao;
@@ -19,11 +20,13 @@ public class RoomController {
     private final RoomDao roomDao;
     private final HeaterDao heaterDao;
     private final WindowDao windowDao;
+    private final BuildingDao buildingDao;
 
-    public RoomController(RoomDao roomDao, HeaterDao heaterDao, WindowDao windowDao) {
+    public RoomController(RoomDao roomDao, HeaterDao heaterDao, WindowDao windowDao, BuildingDao buildingDao) {
         this.roomDao = roomDao;
         this.heaterDao = heaterDao;
         this.windowDao = windowDao;
+        this.buildingDao = buildingDao;
     }
 
     @GetMapping
@@ -38,9 +41,10 @@ public class RoomController {
 
     @PostMapping
     public RoomDto create(@RequestBody RoomDto dto) {
+        Building building = buildingDao.getById(dto.getBuildingId());
         Room room = null;
         if (dto.getId() == null) {
-            room = roomDao.save(new Room(dto.getName(), dto.getFloor(), dto.getBuilding()));
+            room = roomDao.save(new Room(dto.getName(), dto.getFloor(), building));
         }
         else {
             room = roomDao.getById(dto.getId());
@@ -50,7 +54,7 @@ public class RoomController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteHeaters(@PathVariable Long id) {
+    public void deleteRoom(@PathVariable Long id) {
         heaterDao.deleteAllHeatersInRoom(id);
         windowDao.deleteAllWindowsInRoom(id);
         roomDao.deleteById(id);

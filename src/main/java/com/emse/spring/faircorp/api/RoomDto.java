@@ -16,8 +16,7 @@ public class RoomDto {
     private Double targetTemperature;
     private Set<HeaterDto> heaters;
     private Set<WindowDto> windows;
-    private Building building;
-
+    private Long buildingId;
     public RoomDto() {
     }
 
@@ -29,7 +28,7 @@ public class RoomDto {
         this.targetTemperature = room.getTargetTemperature();
         this.heaters = room.getHeaters().stream().map(HeaterDto::new).collect(Collectors.toSet());
         this.windows = room.getWindows().stream().map(WindowDto::new).collect(Collectors.toSet());
-        this.building = room.getBuilding();
+        this.buildingId = room.getBuilding().getId();
     }
 
     public Long getId() {
@@ -87,7 +86,7 @@ public class RoomDto {
     public Set<WindowDto> getWindows() {
         return windows;
     }
-    public Building getBuilding() {return this.building;}
-    public void setBuilding(Building building) {this.building = building;}
+    public Long getBuildingId() {return this.buildingId;}
+    public void setBuildingId(Long buildingId) {this.buildingId = buildingId;}
 
 }

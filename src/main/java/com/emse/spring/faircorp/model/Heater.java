@@ -3,7 +3,6 @@ package com.emse.spring.faircorp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "HEATER")
 public class Heater {
     @Id
     @GeneratedValue
@@ -12,24 +11,22 @@ public class Heater {
     @Column(nullable=false)
     private String name;
 
-    @Column(nullable = true)
-    private Long power;
-
-
-    @ManyToOne(optional = false)
-    private Room room;
-
     @Column(nullable=false)
     @Enumerated(EnumType.STRING)
     private HeaterStatus heaterStatus;
 
+    private Long power;
+
+    @ManyToOne(optional = false)
+    private Room room;
+
     public Heater() {
     }
 
-    public Heater(String name, Room room, HeaterStatus heaterStatus) {
-        this.heaterStatus = heaterStatus;
-        this.room = room;
+    public Heater(String name, Room room, HeaterStatus status) {
+        this.heaterStatus = status;
         this.name = name;
+        this.room= room;
     }
 
     public Long getId() {
@@ -47,23 +44,32 @@ public class Heater {
     public void setName(String name) {
         this.name = name;
     }
-    public long getPower(){
-        return this.power;
-    }
-    public void setPower(Long power){
-        this.power = power;
-    }
-    public Room getRoom(){
-        return this.room;
-    }
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+
     public HeaterStatus getHeaterStatus() {
         return heaterStatus;
     }
 
+    public void setHeaterStats(HeaterStatus heaterStatus) {
+        this.heaterStatus = heaterStatus;
+    }
+
+    public Long getPower() {
+        return power;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
     public void setHeaterStatus(HeaterStatus heaterStatus) {
         this.heaterStatus = heaterStatus;
+    }
+
+    public void setPower(Long power) {
+        this.power = power;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
