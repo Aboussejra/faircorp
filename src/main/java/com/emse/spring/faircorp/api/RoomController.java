@@ -40,19 +40,21 @@ public class RoomController {
     }
 
     @PostMapping
-    public RoomDto create(@RequestBody RoomDto dto) {
+    public RoomDto create(@RequestBody RoomCommandDto dto) {
         Building building = buildingDao.getById(dto.getBuildingId());
-        Room room = null;
-        if (dto.getId() == null) {
-            room = roomDao.save(new Room(dto.getName(), dto.getFloor(), building));
-        }
-        else {
-            room = roomDao.getById(dto.getId());
-            room.setFloor(dto.getFloor());
-        }
+        Room room = roomDao.save(new Room(dto.getName(), dto.getFloor(), building));
         return new RoomDto(room);
     }
 
+    @PutMapping(path = "/{id}")
+    public RoomDto update(@RequestBody RoomCommandDto dto, @PathVariable Long id) {
+        Building building = buildingDao.getById(dto.getBuildingId());
+        Room room = roomDao.getById(id);
+        room.setFloor(dto.getFloor());
+        room.setCurrentTemperature(dto.getCurrentTemperature());
+        room.setTargetTemperature(dto.getTargetTemperature());
+        return new RoomDto(room);
+    }
     @DeleteMapping(path = "/{id}")
     public void deleteRoom(@PathVariable Long id) {
         heaterDao.deleteAllHeatersInRoom(id);

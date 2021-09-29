@@ -31,7 +31,7 @@ public class Room {
     public Room() {
     }
     public  Room(String name, Integer floor, Building building){
-        this.id = id;
+        this.name = name;
         this.floor = floor;
         this.building = building;
     }
