@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 @RestController
 @RequestMapping("/api/hello")
 @Transactional
+@CrossOrigin()
 public class HelloController {
 
 
