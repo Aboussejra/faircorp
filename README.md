@@ -1,4 +1,4 @@
-# faircorp
+# Learning Backend Dev
 
 Backend Project for a Mobile and Web Programming Project
 The goal is to build an application which will able to
